@@ -4,9 +4,7 @@ import { getdata } from "../../Store/HomeSlice";
 import "./Homepage.css";
 import { Link } from "react-router-dom";
 
-
 // Home Page / Popular Movie Page
-
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -28,20 +26,19 @@ const Homepage = () => {
   };
 
   return (
-
     <div className="homepage-container">
       <div className="movie-grid">
-        {HomeData?.results?.slice(0, 10).map((movie) => (
+        {HomeData?.results?.map((movie) => (
           <Link to={`/movie/${movie.id}`} key={movie.id}>
-          <div className="movie-card" key={movie.id} >
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-              className="movie-poster"
-            />
-            <h2 className="movie-title" >{movie.title}</h2>
-            <p className="movie-rating">Rating: {movie.vote_average.toFixed(1)}</p>
-          </div>
+            <div className="movie-card" key={movie.id}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+                className="movie-poster"
+              />
+              <h2 className="movie-title">{movie.title}</h2>
+              <p className="movie-rating">Rating: {movie.vote_average.toFixed(1)}</p>
+            </div>
           </Link>
         ))}
       </div>
@@ -53,8 +50,6 @@ const Homepage = () => {
         <button onClick={handleNextPage}>Next</button>
       </div>
     </div>
-
-
   );
 };
 
